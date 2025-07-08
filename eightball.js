@@ -1,6 +1,9 @@
-let randomTexts = [""]
+let randomTexts = ["Wishful Thinking!","Keep Hoping!","Not In A Million Years!","Without A Doubt","Can You Handle The Truth?","Definitely Maybe","Try Google","Eight Ball.exe Has Stopped Working","Bop it, Twist It, Pull It", "Of Course Queen!","HELP! I'M STUCK IN AN EIGHT BALL"]
+let currentText = " "
 let myInput;
 let eightball;
+let imageAlpha =255;
+let isFading =false;
 let showImage = true;
 
 function preload(){
@@ -9,23 +12,44 @@ function preload(){
 
 function setup(){
   createCanvas (windowWidth, windowHeight)
+  textSize(30)
+  textAlign(CENTER);
   myInput =createInput('Enter text here');
     myInput.position(580, 50);
   myInput.size(400);
-  eightball
+  myInput.changed(answer)
+ 
+}
+
+function answer(){
+  if(myInput.value() != ''){
+   isFading =true;
+   currentText = random(randomTexts);
+ }
 }
 
 function draw(){
-  background(100)
+  background(150)
+  tint(255,imageAlpha);
+  textSize(24);
+  text(currentText, width/2, height/2);
    let inputText = myInput.value();
-  //text(inputText, 50, 100);
+  //cantext(inputText, 50, 100);
   if (showImage){
   image(eightball,550,200,400,400)
+  if(isFading && imageAlpha>0){
+    imageAlpha--;
+  }
   }
 }
 
 function keyPressed(){
   if (keyCode===ENTER){
-    showImage = false;
+  
+  }
+  {
+    if(keyCode===ENTER){
+     // currentText = random(randomTexts);
+    }
   }
 }
